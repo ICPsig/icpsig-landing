@@ -1,0 +1,59 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  position: relative;
+}
+
+.feature {
+  --x-px: calc(var(--x) * 1px);
+  --y-px: calc(var(--y) * 1px);
+  // --border: 2px;
+  --border: 1px;
+  height: 80px;
+  width: 80px;
+  // border: 1px solid #1A2A42;
+  // background: rgba(255, 255, 255, 0.125);
+  background: rgba(26, 42, 66, 0.5);
+  // border-radius: 0.5rem;
+  // overflow: hidden;
+
+  &:before,
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    inset: 2px;
+    border-radius: inherit;
+    background: radial-gradient(
+      500px circle at var(--x-px) var(--y-px),
+      rgba(21, 115, 254, 0.9),
+      transparent 20%
+    );
+  }
+
+  &:before {
+    z-index: 1;
+  }
+
+  &:after {
+    opacity: 0;
+    z-index: 2;
+    transition: opacity 0.4s ease;
+  }
+
+  &:hover:after {
+    opacity: 0.1;
+  }
+}
+
+.feature-content {
+  background: #1B2028;
+  z-index: 1;
+  position: absolute;
+  inset: var(--border);
+}
